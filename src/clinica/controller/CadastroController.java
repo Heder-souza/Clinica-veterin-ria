@@ -4,23 +4,31 @@
 */
 package clinica.controller;
 
-import clinica.model.Animal;//pegamos a "ficha modelo" de cadastro do animal
-import clinica.model.Tutor;//pegamos a "ficha modelo" de cadastro do dono
+import clinica.model.Animal;// pegamos a "ficha modelo" de cadastro do animal
+import clinica.model.Tutor;// pegamos a "ficha modelo" de cadastro do dono
 import java.util.ArrayList;// aqui importamos o array list pq diferente do array normal, nele não precisamos definir um tamanho fixo, nós vamos adicionando os dados e ele vai crescendo conforme necessário
-import java.util.List;
+import java.util.List;// necessário para usarmos o array list
 
 public class CadastroController {
 
+    // lista que guarda todos os animais cadastrados durante o uso do programa
+    // funciona como um arquivo que vai crescendo conforme novos animais são cadastrados
     List<Animal> animais = new ArrayList<>();
 
+    // metodo que recebe os dados digitados na tela, valida se estão preenchidos e salva o animal
+    // retorna true se salvou com sucesso ou false se algum campo estava vazio
     public boolean salvarAnimal(String nome, String especie, String raca, String idade, String sexo) {
+
+        // verifica se algum campo está vazio - se estiver, para aqui e retorna false
+        // o || significa (ou), se qualquer um estiver vazio já retorna false
         if (nome.isEmpty() || especie.isEmpty() || raca.isEmpty() || idade.isEmpty() || sexo.isEmpty()) {
             return false;
         } else {
+            // todos os campos estão preenchidos, cria o objeto animal usando a ficha modelo
+            // e adiciona na lista de animais cadastrados
             Animal animal = new Animal(nome, especie, raca, idade, sexo);
-            animais.add(animal);
-            return true;
+            animais.add(animal);// adiciona o animal criado na lista
+            return true;// avisa que salvou com sucesso para mostrar a mensagem
         }
-
     }
 }
